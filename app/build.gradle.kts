@@ -53,37 +53,38 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
 
-    debugImplementation(libs.androidx.compose.ui.tooling)
-    debugImplementation(libs.androidx.compose.ui.test.manifest)
-
-    // Testing
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-
     // -----------------------
-    // HILT (ONLY ONE VERSION)
+    // HILT (KSP only)
     // -----------------------
     implementation("com.google.dagger:hilt-android:2.59.1")
     ksp("com.google.dagger:hilt-android-compiler:2.59.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
     // -----------------------
-    // Lifecycle (modern only)
-    // -----------------------
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.0")
-
-    // -----------------------
-    // Coroutines (modern)
+    // Coroutines
     // -----------------------
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
     // -----------------------
-    // Retrofit
+    // Retrofit + OkHttp
     // -----------------------
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+    // -----------------------
+    // Room (KSP only)
+    // -----------------------
+    val room_version = "2.6.1"
+    implementation("androidx.room:room-runtime:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
+
+    // -----------------------
+    // Coil (Image Loading)
+    // -----------------------
+    implementation("io.coil-kt:coil-compose:2.6.0")
+
+    // icon
+    implementation("androidx.compose.material:material-icons-extended")
 }

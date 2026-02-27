@@ -8,6 +8,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -46,35 +47,42 @@ fun WeatherSpashScreen(navController: NavController) {
             )
         )
         delay(2000L)
-        navController.navigate(WeatherScreens.MainScreen.name)
+        navController.navigate(
+            WeatherScreens.MainScreen.name + "/$defaultCity",
+        )
 
     }
-
-    Surface(
-        modifier = Modifier
-            .padding(15.dp)
-            .size(330.dp)
-            .scale(scale.value),
-        shape = CircleShape,
-        color = Color.White,
-        border = BorderStroke(width = 2.dp, color = Color.LightGray)
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
     ) {
-        Column(
-            modifier = Modifier.padding(1.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+        Surface(
+            modifier = Modifier
+                .padding(15.dp)
+                .size(330.dp)
+                .scale(scale.value),
+            shape = CircleShape,
+            color = Color.White,
+            border = BorderStroke(width = 2.dp, color = Color.LightGray)
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.sun),
-                contentDescription = "dun image",
-                modifier = Modifier.size(95.dp),
-                contentScale = ContentScale.Fit
-            )
-            Text(
-                text = "Find the sun ? ",
-                style = MaterialTheme.typography.titleLarge,
-                color = Color.LightGray
-            )
+            Column(
+                modifier = Modifier.padding(1.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.sun),
+                    contentDescription = "dun image",
+                    modifier = Modifier.size(95.dp),
+                    contentScale = ContentScale.Fit
+                )
+                Text(
+                    text = "Find the sun ? ",
+                    style = MaterialTheme.typography.titleLarge,
+                    color = Color.LightGray
+                )
+            }
         }
     }
 }

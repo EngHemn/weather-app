@@ -39,8 +39,12 @@ android {
     }
 }
 
-dependencies {
 
+dependencies {
+    val room_version = "2.7.0-alpha11"
+
+    implementation("com.google.dagger:dagger-compiler:2.51.1")
+    ksp("com.google.dagger:dagger-compiler:2.51.1")
     // Core
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -75,7 +79,6 @@ dependencies {
     // -----------------------
     // Room (KSP only)
     // -----------------------
-    val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
     ksp("androidx.room:room-compiler:$room_version")

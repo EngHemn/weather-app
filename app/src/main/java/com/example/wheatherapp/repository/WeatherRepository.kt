@@ -1,6 +1,6 @@
 package com.example.wheatherapp.repository
 
-import com.example.wheatherapp.data.dataOrException
+import com.example.wheatherapp.data.DataOrException
 import com.example.wheatherapp.model.Weather
 import com.example.wheatherapp.network.WeatherApi
 import javax.inject.Inject
@@ -8,13 +8,12 @@ import javax.inject.Inject
 class WeatherRepository @Inject constructor(
     val api: WeatherApi
 ) {
-    suspend fun getWeather(cityQuery: String): dataOrException<Weather, Boolean, Exception> {
+    suspend fun getWeather(cityQuery: String): DataOrException<Weather, Exception> {
         val response = try {
-             api.getWeather(query = cityQuery)
+            api.getWeather(query = cityQuery)
         } catch (e: Exception) {
-
-            return dataOrException(e = e)
+            return DataOrException(e = e)
         }
-        return dataOrException(data = response)
+        return DataOrException(data = response)
     }
 }

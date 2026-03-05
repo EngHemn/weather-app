@@ -2,12 +2,11 @@ package com.example.wheatherapp.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.example.wheatherapp.data.SettingsDao
 import com.example.wheatherapp.data.WeatherDao
 import com.example.wheatherapp.data.WeatherDatabase
-import com.example.wheatherapp.network.WeatherApi
-import com.example.wheatherapp.utils.Constant
+import com.example.wheatherapp.data.network.WeatherApi
+import com.example.wheatherapp.domain.utils.Constant
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -52,4 +51,19 @@ object AppModule {
             )
             .build().create(WeatherApi::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideWeatherRepository(api: WeatherApi): com.example.wheatherapp.domain.repository.WeatherRepository =
+        com.example.wheatherapp.data.repository.WeatherRepositoryImpl(api)
+
+    @Provides
+    @Singleton
+    fun provideWeatherDbRepository(weatherDao: com.example.wheatherapp.data.WeatherDao): com.example.wheatherapp.domain.repository.WeatherDbRepository =
+        com.example.wheatherapp.data.repository.WeatherDbRepositoryImpl(weatherDao)
+
+    @Provides
+    @Singleton
+    fun provideSettingsRepository(settingsDao: com.example.wheatherapp.data.SettingsDao): com.example.wheatherapp.domain.repository.SettingsRepository =
+        com.example.wheatherapp.data.repository.SettingsRepositoryImpl(settingsDao)
 }

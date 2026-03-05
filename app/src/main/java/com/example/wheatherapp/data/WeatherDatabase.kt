@@ -2,12 +2,12 @@ package com.example.wheatherapp.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.wheatherapp.model.Favorite
-import com.example.wheatherapp.model.Settings
+import com.example.wheatherapp.domain.model.Favorite
+import com.example.wheatherapp.domain.model.Settings
 
 @Database(
     entities = [Favorite::class, Settings::class],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class WeatherDatabase : RoomDatabase() {

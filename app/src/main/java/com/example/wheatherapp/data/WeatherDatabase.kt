@@ -12,5 +12,5 @@ import com.example.wheatherapp.domain.model.Settings
 )
 abstract class WeatherDatabase : RoomDatabase() {
     abstract fun weatherDao(): WeatherDao
-    abstract fun settingsDao(): SettingsDao
+//    abstract fun settingsDao(): SettingsDao
 }

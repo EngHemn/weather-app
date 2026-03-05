@@ -25,10 +25,10 @@ object AppModule {
     fun provideWeatherDao(weatherDatabase: WeatherDatabase): WeatherDao =
         weatherDatabase.weatherDao()
 
-    @Provides
-    @Singleton
-    fun provideSettingsDao(weatherDatabase: WeatherDatabase): SettingsDao =
-        weatherDatabase.settingsDao()
+//    @Provides
+//    @Singleton
+//    fun provideSettingsDao(weatherDatabase: WeatherDatabase): SettingsDao =
+//        weatherDatabase.settingsDao()
 
     @Provides
     @Singleton
@@ -54,6 +54,12 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideSharedPreferences(@ApplicationContext context: android.content.Context): android.content.SharedPreferences {
+        return context.getSharedPreferences("weather_prefs", android.content.Context.MODE_PRIVATE)
+    }
+
+    @Provides
+    @Singleton
     fun provideWeatherRepository(api: WeatherApi): com.example.wheatherapp.domain.repository.WeatherRepository =
         com.example.wheatherapp.data.repository.WeatherRepositoryImpl(api)
 
@@ -64,6 +70,6 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideSettingsRepository(settingsDao: com.example.wheatherapp.data.SettingsDao): com.example.wheatherapp.domain.repository.SettingsRepository =
-        com.example.wheatherapp.data.repository.SettingsRepositoryImpl(settingsDao)
+    fun provideSettingsRepository(sharedPreferences: android.content.SharedPreferences): com.example.wheatherapp.domain.repository.SettingsRepository =
+        com.example.wheatherapp.data.repository.SettingsRepositoryImpl(sharedPreferences)
 }
